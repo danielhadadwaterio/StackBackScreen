@@ -1,0 +1,3 @@
+rootProject.name='FragmentStack'
+include ':app'
+include ':stackscreens'
