@@ -43,6 +43,7 @@ public class StackBackScreenV2 {
             mAllScreenHistory.remove(mAllScreenHistory.size() - 1);
         }
 
+        mRealScreenShowed = screenID;
         mAllScreenHistory.push(new ScreenInfo(screenID, screenName, bundle));
     }
 
@@ -50,14 +51,14 @@ public class StackBackScreenV2 {
         for (int i = 0; i < mAllScreenHistory.size(); i++) {
             StringBuilder bundleKeys = new StringBuilder();
             if (mAllScreenHistory.get(i).getBundle() != null) {
-                bundleKeys = new StringBuilder("Bundle{ ");
+                bundleKeys = new StringBuilder("Bundle{ \n");
                 for (String key : mAllScreenHistory.get(i).getBundle().keySet()) {
                     bundleKeys.append(" ").append(key).append(" => ").append(mAllScreenHistory.get(i).getBundle().get(key)).append(";\n");
                 }
                 bundleKeys.append(" }\n");
             }
 
-            Log.d("SCREEN-PRINT", (i + 1) + ": " + mAllScreenHistory.get(i).getScreenName() + ((mAllScreenHistory.get(i).getBundle() == null) ? "" : ", has data"+((isBundlePrint)?": "+bundleKeys:"")) + "\n");
+            Log.d("SCREEN-PRINT", (i + 1) + ": " + mAllScreenHistory.get(i).getScreenName() + ((mAllScreenHistory.get(i).getBundle() == null) ? "" : ", has data" + ((isBundlePrint) ? ": " + bundleKeys : "")) + "\n");
         }
     }
 
@@ -71,15 +72,26 @@ public class StackBackScreenV2 {
 
         mAllScreenHistory.pop();
         Log.d(TAG, "backToPrevScreen(), return " + mTempScreenBack.getScreenName() + ((mTempScreenBack.getBundle() == null) ? "" : ", has data"));
+        mRealScreenShowed = mTempScreenBack.getScreenID();
         return screenInfo;
     }
 
 
-    public int getCurrentScreen() {
+    public int getCurrentScreenFromStuck() {
         if (mAllScreenHistory.isEmpty())
             return EMPTY_HISTORY_SCREEN;
         return mAllScreenHistory.peek().getScreenID();
     }
 
+
+    private int mRealScreenShowed = EMPTY_HISTORY_SCREEN;
+
+    public int getRealCurrentScreen() {
+        return mRealScreenShowed;
+    }
+
+    public void setRealScreenShowing(int realScreenShowed) {
+        this.mRealScreenShowed = realScreenShowed;
+    }
 
 }
