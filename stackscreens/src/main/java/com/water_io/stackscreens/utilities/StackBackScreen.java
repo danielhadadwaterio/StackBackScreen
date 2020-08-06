@@ -1,4 +1,4 @@
-package com.water_io.stackscreens;
+package com.water_io.stackscreens.utilities;
 import android.os.Bundle;
 import java.util.AbstractMap;
 import java.util.HashMap;
@@ -15,7 +15,6 @@ public class StackBackScreen {
         this.mSizeOfStack = sizeOfStack;
         newScreenShowing(firstScreenInit, bundleFirstScreenInit);
     }
-
 
     public StackBackScreen(final int firstScreenInit, int sizeOfStack) {
         this.mSizeOfStack = sizeOfStack;
