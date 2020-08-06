@@ -46,9 +46,18 @@ public class StackBackScreenV2 {
         mAllScreenHistory.push(new ScreenInfo(screenID, screenName, bundle));
     }
 
-    public void printStack() {
+    public void printStack(boolean isBundlePrint) {
         for (int i = 0; i < mAllScreenHistory.size(); i++) {
-            Log.d(TAG, (i + 1) + ": " + mAllScreenHistory.peek().getScreenName() + ((mAllScreenHistory.peek().getBundle() == null) ? "" : ", has data") + "\n");
+            StringBuilder bundleKeys = new StringBuilder();
+            if (mAllScreenHistory.get(i).getBundle() != null) {
+                bundleKeys = new StringBuilder("Bundle{ ");
+                for (String key : mAllScreenHistory.get(i).getBundle().keySet()) {
+                    bundleKeys.append(" ").append(key).append(" => ").append(mAllScreenHistory.get(i).getBundle().get(key)).append(";\n");
+                }
+                bundleKeys.append(" }\n");
+            }
+
+            Log.d("SCREEN-PRINT", (i + 1) + ": " + mAllScreenHistory.get(i).getScreenName() + ((mAllScreenHistory.get(i).getBundle() == null) ? "" : ", has data"+((isBundlePrint)?": "+bundleKeys:"")) + "\n");
         }
     }
 
@@ -61,7 +70,7 @@ public class StackBackScreenV2 {
         mTempScreenBack = screenInfo;
 
         mAllScreenHistory.pop();
-        Log.d(TAG, "backToPrevScreen(), return " + mTempScreenBack.getScreenName()+((mTempScreenBack.getBundle()==null)?"":", has data"));
+        Log.d(TAG, "backToPrevScreen(), return " + mTempScreenBack.getScreenName() + ((mTempScreenBack.getBundle() == null) ? "" : ", has data"));
         return screenInfo;
     }
 
