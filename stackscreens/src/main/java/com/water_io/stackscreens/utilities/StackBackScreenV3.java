@@ -14,17 +14,8 @@ public class StackBackScreenV3 {
     private Stack<ScreenInfo> mAllScreenHistory = new Stack<>();
     public final static int EMPTY_HISTORY_SCREEN = -1;
     private ScreenInfo mTempScreenBack = new ScreenInfo(EMPTY_HISTORY_SCREEN, END_SCREEN, null);
-    private int mSizeOfStack;
+    private int mSizeOfStack=25;
 
-    public StackBackScreenV3(final int firstScreenInit, String screenName, Bundle bundleFirstScreenInit, int sizeOfStack) {
-        this.mSizeOfStack = sizeOfStack;
-        newScreenShowing(firstScreenInit, screenName, bundleFirstScreenInit);
-    }
-
-    public StackBackScreenV3(final int firstScreenInit, String screenName, int sizeOfStack) {
-        this.mSizeOfStack = sizeOfStack;
-        newScreenShowing(firstScreenInit, screenName, null);
-    }
 
     public void newScreenShowing(int screenID, String screenName) {
         newScreenShowing(screenID, screenName, null);
