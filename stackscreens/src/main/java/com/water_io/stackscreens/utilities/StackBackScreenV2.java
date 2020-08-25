@@ -53,8 +53,7 @@ public class StackBackScreenV2 {
             mTempScreenBack = mAllScreenHistory.get(mAllScreenHistory.size() - 1);
         }
     }
-
-
+    
     private void removingLimitationSize() {
         while (mAllScreenHistory.size() > mSizeOfStack) {
             mAllScreenHistory.removeElementAt(0);
