@@ -40,15 +40,20 @@ public class StackBackScreenV2 {
         Log.d(TAG, "newScreenShowing(), " + screenName + ((bundle == null) ? "" : ", has data"));
 
         removingLimitationSize();
-        updateLastScreenBack();
         mRealScreenShowed = screenID;
-        mAllScreenHistory.push(new ScreenInfo(screenID, screenName, bundle));
+        ScreenInfo screenInfo = new ScreenInfo(screenID, screenName, bundle);
+        updateLastScreenBack(screenInfo);
+        mAllScreenHistory.push(screenInfo);
     }
 
-    private void updateLastScreenBack() {
-        if (mAllScreenHistory.size() >= 1)
+    private void updateLastScreenBack(ScreenInfo screenInfo) {
+        if (mAllScreenHistory.isEmpty()) {
+            mTempScreenBack = screenInfo;
+        } else {
             mTempScreenBack = mAllScreenHistory.get(mAllScreenHistory.size() - 1);
+        }
     }
+
 
     private void removingLimitationSize() {
         while (mAllScreenHistory.size() > mSizeOfStack) {
