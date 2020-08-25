@@ -69,10 +69,13 @@ public class StackBackScreenV2 {
         }
         ScreenInfo screenInfo = mAllScreenHistory.pop();
         mTempScreenBack = screenInfo;
-
-        Log.d(TAG, "backToPrevScreen(), return " + mTempScreenBack.getScreenName() + ((mTempScreenBack.getBundle() == null) ? "" : ", has data"));
-        mRealScreenShowed = mTempScreenBack.getScreenID();
-        return screenInfo;
+        if (screenInfo.getScreenID() == mRealScreenShowed)
+            return backToPrevScreen();
+        else {
+            Log.d(TAG, "backToPrevScreen(), return " + mTempScreenBack.getScreenName() + ((mTempScreenBack.getBundle() == null) ? "" : ", has data"));
+            mRealScreenShowed = mTempScreenBack.getScreenID();
+            return screenInfo;
+        }
     }
 
     public int getCurrentScreenFromStuck() {
