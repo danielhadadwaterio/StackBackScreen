@@ -75,7 +75,6 @@ public class StackBackScreenV2 {
         return screenInfo;
     }
 
-
     public int getCurrentScreenFromStuck() {
         if (mAllScreenHistory.isEmpty())
             return EMPTY_HISTORY_SCREEN;
