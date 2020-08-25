@@ -46,7 +46,7 @@ public class StackBackScreenV2 {
 
     private void removingLimitationSize() {
         while (mAllScreenHistory.size() > mSizeOfStack) {
-            mAllScreenHistory.removeElementAt(mAllScreenHistory.size() - 1);
+            mAllScreenHistory.removeElementAt(0);
         }
     }
 
