@@ -39,12 +39,16 @@ public class StackBackScreenV2 {
         }
         Log.d(TAG, "newScreenShowing(), " + screenName + ((bundle == null) ? "" : ", has data"));
 
-        if (mAllScreenHistory.size() > mSizeOfStack) {
-            mAllScreenHistory.remove(mAllScreenHistory.size() - 1);
-        }
+        removingLimitationSize();
 
         mRealScreenShowed = screenID;
         mAllScreenHistory.push(new ScreenInfo(screenID, screenName, bundle));
+    }
+
+    private void removingLimitationSize() {
+        while (mAllScreenHistory.size() > mSizeOfStack) {
+            mAllScreenHistory.removeElementAt(mAllScreenHistory.size() - 1);
+        }
     }
 
     public void printStack(boolean isBundlePrint) {
