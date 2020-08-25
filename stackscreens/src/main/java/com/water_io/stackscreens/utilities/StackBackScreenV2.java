@@ -53,7 +53,7 @@ public class StackBackScreenV2 {
             mTempScreenBack = mAllScreenHistory.get(mAllScreenHistory.size() - 1);
         }
     }
-    
+
     private void removingLimitationSize() {
         while (mAllScreenHistory.size() > mSizeOfStack) {
             mAllScreenHistory.removeElementAt(0);
@@ -83,7 +83,7 @@ public class StackBackScreenV2 {
         ScreenInfo screenInfo = mAllScreenHistory.pop();
         mTempScreenBack = screenInfo;
         mTempScreenBack.setPressBack(true);
-        if (screenInfo.getScreenID() == mRealScreenShowed)
+        if (screenInfo.getScreenID() == mRealScreenShowed && !mAllScreenHistory.isEmpty())
             return backToPrevScreen();
         else {
             Log.d(TAG, "backToPrevScreen(), return " + screenInfo.getScreenName() + ((screenInfo.getBundle() == null) ? "" : ", has data"));
