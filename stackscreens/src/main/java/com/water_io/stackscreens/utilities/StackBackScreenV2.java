@@ -87,7 +87,7 @@ public class StackBackScreenV2 {
             return backToPrevScreen();
         else {
             Log.d(TAG, "backToPrevScreen(), return " + mTempScreenBack.getScreenName() + ((mTempScreenBack.getBundle() == null) ? "" : ", has data"));
-            mRealScreenShowed = mTempScreenBack.getScreenID();
+//            mRealScreenShowed = mTempScreenBack.getScreenID();
             return screenInfo;
         }
     }
