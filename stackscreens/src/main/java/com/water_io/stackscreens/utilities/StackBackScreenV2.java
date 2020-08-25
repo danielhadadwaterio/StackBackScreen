@@ -32,6 +32,9 @@ public class StackBackScreenV2 {
         newScreenShowing(screenID, screenName, null);
     }
 
+    public int getSizeOfStack (){
+        return mAllScreenHistory.size();
+    }
     public void pushScreenWithoutCheck(int screenID, String screenName, Bundle bundle) {
         ScreenInfo screenInfo = new ScreenInfo(screenID, screenName, bundle);
         mAllScreenHistory.push(screenInfo);
