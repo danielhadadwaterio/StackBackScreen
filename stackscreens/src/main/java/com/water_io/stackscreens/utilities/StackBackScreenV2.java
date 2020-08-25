@@ -46,7 +46,8 @@ public class StackBackScreenV2 {
     }
 
     private void updateLastScreenBack() {
-        mTempScreenBack = mAllScreenHistory.get(mAllScreenHistory.size() - 1);
+        if (mAllScreenHistory.size() > 1)
+            mTempScreenBack = mAllScreenHistory.get(mAllScreenHistory.size() - 1);
     }
 
     private void removingLimitationSize() {
