@@ -33,6 +33,7 @@ public class StackBackScreenV2 {
     }
 
     public void newScreenShowing(int screenID, String screenName, Bundle bundle) {
+        mRealScreenShowed = screenID;
         if (screenID == mTempScreenBack.getScreenID()) {
             Log.d(TAG, "newScreenShowing(), screen already showed");
             return;
@@ -40,7 +41,6 @@ public class StackBackScreenV2 {
         Log.d(TAG, "newScreenShowing(), " + screenName + ((bundle == null) ? "" : ", has data"));
 
         removingLimitationSize();
-        mRealScreenShowed = screenID;
         ScreenInfo screenInfo = new ScreenInfo(screenID, screenName, bundle);
         updateLastScreenBack(screenInfo);
         mAllScreenHistory.push(screenInfo);
