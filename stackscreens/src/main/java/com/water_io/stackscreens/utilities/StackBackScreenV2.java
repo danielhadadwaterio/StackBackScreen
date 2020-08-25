@@ -32,6 +32,10 @@ public class StackBackScreenV2 {
         newScreenShowing(screenID, screenName, null);
     }
 
+    public void pushScreenWithoutCheck(int screenID, String screenName, Bundle bundle) {
+        ScreenInfo screenInfo = new ScreenInfo(screenID, screenName, bundle);
+        mAllScreenHistory.push(screenInfo);
+    }
     public void newScreenShowing(int screenID, String screenName, Bundle bundle) {
         mRealScreenShowed = screenID;
         if (screenName.equals(mTempScreenBack.getScreenName()) && mTempScreenBack.isPressBack()) {
@@ -83,7 +87,7 @@ public class StackBackScreenV2 {
         ScreenInfo screenInfo = mAllScreenHistory.pop();
         mTempScreenBack = screenInfo;
         mTempScreenBack.setPressBack(true);
-        if (screenInfo.getScreenID() == mRealScreenShowed && !mAllScreenHistory.isEmpty())
+        if (screenInfo.getScreenID() == mRealScreenShowed )
             return backToPrevScreen();
         else {
             Log.d(TAG, "backToPrevScreen(), return " + screenInfo.getScreenName() + ((screenInfo.getBundle() == null) ? "" : ", has data"));
