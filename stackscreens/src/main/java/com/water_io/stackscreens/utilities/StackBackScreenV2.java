@@ -34,7 +34,7 @@ public class StackBackScreenV2 {
 
     public void newScreenShowing(int screenID, String screenName, Bundle bundle) {
         mRealScreenShowed = screenID;
-        if (screenName.equals(mTempScreenBack.getScreenName())) {
+        if (screenName.equals(mTempScreenBack.getScreenName()) && mTempScreenBack.isPressBack()) {
             Log.d(TAG, "newScreenShowing(), screen already showed");
             return;
         }
@@ -83,6 +83,7 @@ public class StackBackScreenV2 {
         }
         ScreenInfo screenInfo = mAllScreenHistory.pop();
         mTempScreenBack = screenInfo;
+        mTempScreenBack.setPressBack(true);
         if (screenInfo.getScreenID() == mRealScreenShowed)
             return backToPrevScreen();
         else {

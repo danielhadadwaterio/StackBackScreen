@@ -6,6 +6,7 @@ public class ScreenInfo {
     private int screenID;
     private String screenName;
     private Bundle bundle;
+    private boolean isPressBack=false;
 
     public ScreenInfo(int screenID, String screenName, Bundle bundle) {
         this.screenID = screenID;
@@ -35,6 +36,14 @@ public class ScreenInfo {
 
     public void setBundle(Bundle bundle) {
         this.bundle = bundle;
+    }
+
+    public void setPressBack(boolean pressBack) {
+        isPressBack = pressBack;
+    }
+
+    public boolean isPressBack() {
+        return isPressBack;
     }
 
     @Override
